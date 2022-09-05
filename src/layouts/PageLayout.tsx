@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { LoginDetails, loginDetails } from "utils/recoil";
+import { isWalletConnecting, LoginDetails, loginDetails } from "utils/recoil";
 import { toast } from "react-hot-toast";
 import clsx from "clsx";
 import { screenWidth } from "@constants/classname";
@@ -24,12 +24,16 @@ const PageLayout: React.FC<Props> = ({
 }) => {
   const router = useRouter();
   const [, setMetamaskDetails] = useRecoilState(loginDetails);
+  const [, setIsWalletConnecting] = useRecoilState(isWalletConnecting);
 
   const connectMyWallet = async () => {
+    setIsWalletConnecting(true);
+
     const data = await connectWallet();
 
     if (data) {
       setMetamaskDetails(data as LoginDetails);
+      setIsWalletConnecting(false);
       return;
     }
 

@@ -15,3 +15,8 @@ export const allCreatedPolls = atom({
   key: "allCreatedPolls",
   default: [] as PollProps[],
 });
+
+export const isWalletConnecting = atom({
+  key: "allCreatedPolls",
+  default: true as boolean,
+});

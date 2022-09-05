@@ -30,9 +30,10 @@ const Home: NextPage = () => {
         <LoadingAnimation />
       ) : (
         <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 flex-wrap">
-          {allCreatedPolls?.map((poll) => (
-            <PollCard key={poll.uuid} {...poll} />
-          ))}
+          {allCreatedPolls.length !== 0 &&
+            allCreatedPolls?.map((poll) => (
+              <PollCard key={poll.uuid} {...poll} />
+            ))}
         </div>
       )}
     </PageLayout>

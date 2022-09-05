@@ -2,7 +2,10 @@ import { screenWidth } from "@constants/classname";
 import LinkedItem from "@elements/LinkedItem";
 import { H5 } from "@elements/Text";
 import ConnectWalletButton from "@modules/connect/ConnectWalletButton";
-import { loginDetails } from "@utils/recoil";
+import {
+  loginDetails,
+  isWalletConnecting as _isWalletConnecting,
+} from "@utils/recoil";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -43,6 +46,8 @@ const Navlinks: React.FC<NavlinksProps> = ({ href, name, Icon }) => {
 
 const Navbar = () => {
   const [{ currentAccount }] = useRecoilState(loginDetails);
+  const [isWalletConnecting] = useRecoilState(_isWalletConnecting);
+
   const [isShowFullAddress, setIsShowFullAddress] = useState(false);
 
   const shortendAddress =
