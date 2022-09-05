@@ -37,21 +37,21 @@ const PageLayout: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    toast.dismiss();
+    if (checkAuth) connectMyWallet();
+
+    const { ethereum } = window as any;
+
+    ethereum.on("accountsChanged", async () => {
+      const data = await connectWallet();
+
+      if (data) {
+        setMetamaskDetails(data as LoginDetails);
+        return;
+      }
+    });
 
     return () => {
-      if (checkAuth) connectMyWallet();
-
-      const { ethereum } = window as any;
-
-      ethereum.on("accountsChanged", async () => {
-        const data = await connectWallet();
-
-        if (data) {
-          setMetamaskDetails(data as LoginDetails);
-          return;
-        }
-      });
+      toast.dismiss();
     };
   }, [router.isReady]);
 
