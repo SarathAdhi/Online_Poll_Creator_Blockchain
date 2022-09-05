@@ -22,8 +22,10 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
+    getMyCreatedPolls();
+
     return () => {
-      setInterval(getMyCreatedPolls, 2000);
+      setInterval(() => getMyCreatedPolls(), 2000);
     };
   }, []);
 
