@@ -11,13 +11,14 @@ const Home: NextPage = () => {
   const [allCreatedPolls, setAllCreatedPolls] =
     useRecoilState(_allCreatedPolls);
 
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getMyCreatedPolls = async () => {
     const data = await getMyPolls();
+    console.log(data);
 
+    setIsLoading(false);
     setAllCreatedPolls(data);
-    setisLoading(false);
   };
 
   useEffect(() => {
