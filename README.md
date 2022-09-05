@@ -1,4 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Online Voting/Poll creator. All the details and informations are completed stored in the Blockchain. Create your Poll and pay the fees using the Rinkeby testnet itself for free.
+
+# Tech Stack
+
+- [Nextjs](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Recoil - State Management](https://recoiljs.org/)
+- [Truffle](https://trufflesuite.com/)
+
+# Languages
+
+- TypeScript
+- Solidity
+
+# To deploy the smart contract
+
+1. `truffle dashboard` (opens dashboard)
+2. `truffle migrate --network dashboard`
+   - Confirm the transaction in the dashboard.
+   - Copy the contract address from the terminal.
+   - paste it in the `.env` file
 
 ## Getting Started
 
