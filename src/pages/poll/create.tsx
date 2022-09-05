@@ -62,7 +62,7 @@ const CreatePoll = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="mt-5 w-11/12 grid gap-3 items-center"
+        className="mt-5 w-11/12 flex flex-col gap-3 items-center"
       >
         <Input
           label="Title"
@@ -141,7 +141,12 @@ const CreatePoll = () => {
             </div>
           ))}
 
-        <button type="submit">Submit</button>
+        <button
+          type="submit"
+          className="mt-5 px-2 py-1 bg-green-600 rounded-md"
+        >
+          Submit
+        </button>
       </form>
     </PageLayout>
   );
