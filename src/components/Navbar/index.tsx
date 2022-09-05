@@ -21,20 +21,20 @@ const Navlinks: React.FC<NavlinksProps> = ({ href, name, Icon }) => {
   return (
     <LinkedItem href={href} className="group relative duration-200 transition ">
       <H5 className="flex items-center gap-1">
-        <Icon className="w-5 h-5" />
-        {name}
+        <Icon className="w-6 h-6 xs:w-5 xs:h-5" />
+        <span className="hidden xs:block">{name}</span>
       </H5>
 
       <span
         className={clsx(
-          "absolute top-0 right-0 h-[2px] w-0 group-hover:w-full duration-200 bg-orange-300"
+          "absolute hidden xs:block top-0 right-0 h-[2px] w-0 group-hover:w-full duration-200 bg-orange-300"
         )}
       />
 
       <span
         className={clsx(
           currentPath === href ? "w-full" : "w-0",
-          "absolute left-0 h-[2px] group-hover:w-full duration-200 bg-orange-300"
+          "absolute hidden xs:block left-0 h-[2px] group-hover:w-full duration-200 bg-orange-300"
         )}
       />
     </LinkedItem>
