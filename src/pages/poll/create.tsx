@@ -3,7 +3,6 @@ import ListInput from "@elements/ListInput";
 import { H2 } from "@elements/Text";
 import PageLayout from "@layouts/PageLayout";
 import React, { useState } from "react";
-import ShortUniqueId from "short-unique-id";
 import { ListInputOption } from "@elements/ListInput";
 import { PlusIcon, MinusIcon } from "@heroicons/react/solid";
 import { createNewPoll } from "@utils/poll";
@@ -58,10 +57,13 @@ const CreatePoll = () => {
   };
 
   return (
-    <PageLayout title="Create Poll" className="text-white items-center">
+    <PageLayout title="Create Poll" className="mt-10 text-white items-center">
       <H2>Create a Poll</H2>
 
-      <form onSubmit={handleSubmit} className="w-full grid gap-3">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-5 w-11/12 grid gap-3 items-center"
+      >
         <Input
           label="Title"
           placeholder="Type your question"
