@@ -65,8 +65,8 @@ const Navbar = () => {
         </LinkedItem>
 
         <div className="z-0 sm:absolute sm:w-full text-center justify-center flex items-center gap-6 text-orange-500">
-          {pages.map((page) => (
-            <Navlinks {...page} />
+          {pages.map(({ key, ...rest }) => (
+            <Navlinks key={key} {...rest} />
           ))}
         </div>
 
