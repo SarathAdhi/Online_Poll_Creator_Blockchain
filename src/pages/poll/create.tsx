@@ -90,7 +90,7 @@ const CreatePoll = () => {
 
         {createPollDetails.votingType.value === "mcq" &&
           [...Array(createPollDetails.optionsCount)].map((_, index) => (
-            <div className="flex items-end  gap-2" key={index}>
+            <div className="flex items-end w-full gap-2" key={index}>
               <Input
                 type="text"
                 label={`Option ${index + 1}`}
