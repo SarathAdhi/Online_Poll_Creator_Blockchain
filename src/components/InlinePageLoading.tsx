@@ -5,7 +5,7 @@ import LoadingAnimation from "./LoadingAnimation";
 const InlinePageLoading = () => {
   return (
     <PageLayout title="" className="flex items-center mt-20">
-      <LoadingAnimation />
+      <LoadingAnimation className="mx-auto" />
     </PageLayout>
   );
 };

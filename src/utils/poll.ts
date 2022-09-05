@@ -14,6 +14,8 @@ const showErrorToast = (message: string) => {
   }
 
   toast.error(message);
+
+  return "error";
 };
 
 export const getContractDetails = () => {

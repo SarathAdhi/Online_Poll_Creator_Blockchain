@@ -4,10 +4,17 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { isWalletConnecting, LoginDetails, loginDetails } from "utils/recoil";
+import {
+  isError as _isError,
+  isWalletConnecting as _isWalletConnecting,
+  LoginDetails,
+  loginDetails,
+} from "utils/recoil";
 import { toast } from "react-hot-toast";
 import clsx from "clsx";
 import { screenWidth } from "@constants/classname";
+import LoadingAnimation from "@components/LoadingAnimation";
+import { H4, P } from "@elements/Text";
 
 type Props = {
   title: string;
@@ -23,8 +30,13 @@ const PageLayout: React.FC<Props> = ({
   className,
 }) => {
   const router = useRouter();
-  const [, setMetamaskDetails] = useRecoilState(loginDetails);
-  const [, setIsWalletConnecting] = useRecoilState(isWalletConnecting);
+  const [{ isCorrectNetwork }, setMetamaskDetails] =
+    useRecoilState(loginDetails);
+
+  const [isWalletConnecting, setIsWalletConnecting] =
+    useRecoilState(_isWalletConnecting);
+
+  const [isError, setIsError] = useRecoilState(_isError);
 
   const connectMyWallet = async () => {
     setIsWalletConnecting(true);
@@ -37,6 +49,8 @@ const PageLayout: React.FC<Props> = ({
       return;
     }
 
+    setIsWalletConnecting(false);
+
     router.replace("/error/4901");
   };
 
@@ -46,18 +60,25 @@ const PageLayout: React.FC<Props> = ({
     const { ethereum } = window as any;
 
     ethereum.on("accountsChanged", async () => {
+      setIsWalletConnecting(true);
+
       const data = await connectWallet();
 
       if (data) {
         setMetamaskDetails(data as LoginDetails);
+        setIsWalletConnecting(false);
+        setIsError(false);
         return;
       }
+
+      setIsError(true);
+      setIsWalletConnecting(false);
     });
 
     return () => {
       toast.dismiss();
     };
-  }, [router.isReady]);
+  }, []);
 
   return (
     <>
@@ -68,11 +89,23 @@ const PageLayout: React.FC<Props> = ({
       <main className="min-h-screen bg-[#0c111f] flex flex-col items-center">
         <Navbar />
 
-        <section
-          className={clsx("flex flex-col flex-1", screenWidth, className)}
-        >
-          {children}
-        </section>
+        {isWalletConnecting ? (
+          <H4 className="mt-10 flex flex-col items-center !text-center text-white">
+            <span className="flex items-center gap-2">
+              Connecting Wallet <LoadingAnimation className="w-5 h-5" />
+            </span>
+
+            <span>
+              If metamask is not opening automatically, open it manually.
+            </span>
+          </H4>
+        ) : (
+          <section
+            className={clsx("flex flex-col flex-1", screenWidth, className)}
+          >
+            {children}
+          </section>
+        )}
       </main>
     </>
   );

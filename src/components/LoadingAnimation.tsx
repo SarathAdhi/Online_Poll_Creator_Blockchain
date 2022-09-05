@@ -8,7 +8,7 @@ type Props = {
 const LoadingAnimation: React.FC<Props> = ({ className }) => {
   return (
     <svg
-      className={clsx("mx-auto animate-spin h-8 w-8 text-white", className)}
+      className={clsx("animate-spin h-8 w-8 text-white", className)}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"

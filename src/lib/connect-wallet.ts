@@ -3,8 +3,6 @@ import Router from "next/router";
 import { toast } from "react-hot-toast";
 
 export const connectWallet = async () => {
-  const router = Router;
-
   try {
     const { ethereum } = window as any;
 
@@ -17,8 +15,8 @@ export const connectWallet = async () => {
     const rinkbyChainId = "0x4";
 
     if (chainId !== rinkbyChainId) {
-      router.replace("/error/4901");
       toast.error("You are not connected to the Rinkeby Testnet!");
+      // router.reload();
       return;
     }
 
@@ -38,6 +36,6 @@ export const connectWallet = async () => {
 
     return details;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 };

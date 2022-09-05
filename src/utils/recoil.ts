@@ -17,6 +17,11 @@ export const allCreatedPolls = atom({
 });
 
 export const isWalletConnecting = atom({
-  key: "allCreatedPolls",
+  key: "isWalletConnecting",
   default: true as boolean,
+});
+
+export const isError = atom({
+  key: "isError",
+  default: false as boolean,
 });
