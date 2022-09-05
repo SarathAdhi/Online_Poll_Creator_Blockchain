@@ -15,18 +15,13 @@ const Home: NextPage = () => {
 
   const getMyCreatedPolls = async () => {
     const data = await getMyPolls();
-    console.log(data);
 
     setIsLoading(false);
     setAllCreatedPolls(data);
   };
 
   useEffect(() => {
-    getMyCreatedPolls();
-
-    return () => {
-      setInterval(() => getMyCreatedPolls(), 2000);
-    };
+    setInterval(() => getMyCreatedPolls(), 2000);
   }, []);
 
   return (
