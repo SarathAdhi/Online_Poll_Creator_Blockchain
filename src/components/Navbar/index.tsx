@@ -2,10 +2,7 @@ import { screenWidth } from "@constants/classname";
 import LinkedItem from "@elements/LinkedItem";
 import { H5 } from "@elements/Text";
 import ConnectWalletButton from "@modules/connect/ConnectWalletButton";
-import {
-  loginDetails,
-  isWalletConnecting as _isWalletConnecting,
-} from "@utils/recoil";
+import { loginDetails } from "@utils/recoil";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -46,16 +43,6 @@ const Navlinks: React.FC<NavlinksProps> = ({ href, name, Icon }) => {
 
 const Navbar = () => {
   const [{ currentAccount }] = useRecoilState(loginDetails);
-  const [isWalletConnecting] = useRecoilState(_isWalletConnecting);
-
-  const [isShowFullAddress, setIsShowFullAddress] = useState(false);
-
-  const shortendAddress =
-    currentAccount &&
-    `${currentAccount.substring(0, 3)}...${currentAccount.substring(
-      currentAccount.length - 3,
-      currentAccount.length
-    )}`;
 
   return (
     <header className="py-4 w-full flex flex-col items-center justify-center sticky top-0">
@@ -76,11 +63,8 @@ const Navbar = () => {
         </div>
 
         {currentAccount ? (
-          <button
-            onClick={() => setIsShowFullAddress((pre) => !pre)}
-            className="z-50 font-bold bg-orange-300 px-2 py-1 rounded-lg cursor-pointer hidden sm:block"
-          >
-            {isShowFullAddress ? currentAccount : shortendAddress}
+          <button className="z-50 w-20 duration-300 hover:w-auto focus:w-auto truncate font-bold bg-orange-300 px-2 py-1 rounded-lg cursor-pointer hidden sm:block">
+            {currentAccount}
           </button>
         ) : (
           <ConnectWalletButton />

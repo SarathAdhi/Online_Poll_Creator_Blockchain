@@ -7,6 +7,7 @@ import { ListInputOption } from "@elements/ListInput";
 import { PlusIcon, MinusIcon } from "@heroicons/react/solid";
 import { createNewPoll } from "@utils/poll";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const options = [
   {
@@ -37,6 +38,8 @@ const initialValues = {
 };
 
 const CreatePoll = () => {
+  const router = useRouter();
+
   const [createPollDetails, setCreatePollDetails] =
     useState<PollDetails>(initialValues);
 
@@ -54,6 +57,8 @@ const CreatePoll = () => {
 
     await createNewPoll(PollDetails);
     setCreatePollDetails(initialValues);
+
+    router.push("/");
   };
 
   return (

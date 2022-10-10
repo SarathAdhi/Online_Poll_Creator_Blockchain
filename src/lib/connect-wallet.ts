@@ -1,5 +1,4 @@
 import { LoginDetails } from "@utils/recoil";
-import Router from "next/router";
 import { toast } from "react-hot-toast";
 
 export const connectWallet = async () => {
@@ -12,11 +11,10 @@ export const connectWallet = async () => {
     }
 
     const chainId = await ethereum.request({ method: "eth_chainId" });
-    const rinkbyChainId = "0x4";
+    const rinkbyChainId = "0xaa36a7";
 
     if (chainId !== rinkbyChainId) {
-      toast.error("You are not connected to the Rinkeby Testnet!");
-      // router.reload();
+      toast.error("You are not connected to the Sepolia Testnet!");
       return;
     }
 

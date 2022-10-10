@@ -1,4 +1,4 @@
-# Online Voting/Poll creator. All the details and informations are completed stored in the Blockchain. Create your Poll and pay the fees using the Rinkeby testnet itself for free.
+# Online Voting/Poll creator. All the details and informations are completed stored in the Blockchain. Create your Poll and pay the fees using the Sepolia testnet itself for free.
 
 # Tech Stack
 
